@@ -1,6 +1,6 @@
 # DumDique Design Studio
 
-A responsive studio website for testing SignaCRM's website connector, with an art-directed vertical-video-inspired hero and scroll-driven scene layers.
+A responsive studio website for testing SignaCRM's website connector, with an editorial hero featuring a design-workstation scene and scroll-driven layered artwork.
 
 ## Local preview
 
