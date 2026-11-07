@@ -1,6 +1,6 @@
 # DumDique Design Studio
 
-A responsive, single-page portfolio demo for testing SignaCRM's website connector.
+A responsive studio website for testing SignaCRM's website connector, with an art-directed vertical-video-inspired hero and scroll-driven scene layers.
 
 ## Local preview
 

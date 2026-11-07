@@ -1,39 +1,14 @@
-const menuButton = document.querySelector(".menu-toggle");
-const mobileNav = document.querySelector("#mobile-nav");
-
-if (menuButton && mobileNav) {
-  menuButton.addEventListener("click", () => {
-    const isOpen = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!isOpen));
-    menuButton.setAttribute("aria-label", isOpen ? "Open menu" : "Close menu");
-    mobileNav.hidden = isOpen;
-  });
-
-  mobileNav.addEventListener("click", (event) => {
-    if (event.target instanceof HTMLAnchorElement) {
-      menuButton.setAttribute("aria-expanded", "false");
-      menuButton.setAttribute("aria-label", "Open menu");
-      mobileNav.hidden = true;
-    }
-  });
-}
-
 const parallaxItems = [...document.querySelectorAll("[data-parallax]")];
-const marqueeTracks = [...document.querySelectorAll(".marquee-track")];
 let scrollFrame = 0;
 
 function updateScrollMotion() {
   const viewportHeight = window.innerHeight;
-
   for (const item of parallaxItems) {
     const bounds = item.getBoundingClientRect();
     const progress = Math.max(0, Math.min(1, (viewportHeight - bounds.top) / (viewportHeight + bounds.height)));
     const distance = Number(item.dataset.parallax);
     item.style.setProperty("--scroll-y", `${(progress - 0.5) * distance * 2}px`);
   }
-
-  const offset = `${-window.scrollY * 0.12}px`;
-  for (const track of marqueeTracks) track.style.setProperty("--scroll-x", offset);
   scrollFrame = 0;
 }
 
@@ -44,3 +19,26 @@ function requestScrollMotion() {
 window.addEventListener("scroll", requestScrollMotion, { passive: true });
 window.addEventListener("resize", requestScrollMotion);
 requestScrollMotion();
+
+const likeButton = document.querySelector(".like-button");
+const likeCount = document.querySelector(".like-count");
+const saveButton = document.querySelector(".save-button");
+const followButton = document.querySelector(".follow-button");
+
+likeButton?.addEventListener("click", () => {
+  const liked = likeButton.getAttribute("aria-pressed") !== "true";
+  likeButton.setAttribute("aria-pressed", String(liked));
+  likeCount.textContent = liked ? "1.3K" : "1.2K";
+});
+
+saveButton?.addEventListener("click", () => {
+  const saved = saveButton.getAttribute("aria-pressed") !== "true";
+  saveButton.setAttribute("aria-pressed", String(saved));
+  saveButton.setAttribute("aria-label", saved ? "Remove saved study" : "Save this study");
+});
+
+followButton?.addEventListener("click", () => {
+  const following = followButton.getAttribute("aria-pressed") !== "true";
+  followButton.setAttribute("aria-pressed", String(following));
+  followButton.textContent = following ? "Following" : "Follow";
+});
